@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import 'package:myblog/src/screens/home_page.dart';
+
+class App extends StatelessWidget {
+  const App({Key? Key}) : super(key: Key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "MyBlog App",
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
