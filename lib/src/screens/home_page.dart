@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myblog/src/helper/blog_list.dart';
+import 'package:myblog/src/screens/detail_screen.dart';
 import 'package:myblog/src/widgets/article_card.dart';
 import 'package:myblog/src/widgets/scroll_card.dart';
 import 'package:myblog/src/widgets/title_splite.dart';
@@ -13,11 +14,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _onArticleTap() {
-    print("Article tapped!");
+  void _onArticleTap(
+    String title,
+    String description,
+    String imagePath,
+    String writer,
+    String category,
+  ) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailScreen(
+          title: title,
+          description: description,
+          imagePath: imagePath,
+          writer: writer,
+          category: category,
+        ),
+      ),
+    );
   }
 
-  void _showrMore() {
+  void _showMore() {
     toastification.show(
       context: context,
       title: const Text("You selected the more button"),
@@ -39,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
             child: SizedBox(
               height: 100,
-              child: TitleSplite(title: "Newest Blogs", onTap: _showrMore),
+              child: TitleSplite(title: "Newest Blogs", onTap: _showMore),
             ),
           ),
           SliverToBoxAdapter(
@@ -55,7 +73,13 @@ class _HomePageState extends State<HomePage> {
                     imagePath: article.imagePath,
                     writer: article.writer,
                     category: article.category,
-                    onTap: _onArticleTap,
+                    onTap: () => _onArticleTap(
+                      article.title,
+                      article.description,
+                      article.imagePath,
+                      article.writer,
+                      article.category
+                    ),
                   );
                 }).toList(),
               ),
@@ -64,7 +88,7 @@ class _HomePageState extends State<HomePage> {
           SliverToBoxAdapter(
             child: SizedBox(
               height: 100,
-              child: TitleSplite(title: "All Posts", onTap: _showrMore),
+              child: TitleSplite(title: "All Posts", onTap: _showMore),
             ),
           ),
           SliverList(
@@ -75,7 +99,13 @@ class _HomePageState extends State<HomePage> {
                   imagePath: element.imagePath,
                   writer: element.writer,
                   description: element.description,
-                  onTap: _onArticleTap,
+                  onTap: () => _onArticleTap(
+                    element.title,
+                    element.description,
+                    element.imagePath,
+                    element.writer,
+                    element.category
+                  ),
                 );
               }).toList(),
             ),
