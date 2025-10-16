@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -76,14 +75,14 @@ class DetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'writer: ${writer}',
+                          'writer: $writer',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
-                          'category: ${category}',
+                          'category: $category',
                           style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
